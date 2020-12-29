@@ -34,7 +34,7 @@ agent any
       stage('artifact uploader') {
         steps {
         nexusArtifactUploader artifacts: [[artifactId: 'spring-boot-samples', classifier: '',
-		file: 'spring-boot-samples/spring-boot-sample-atmosphere/target/spring-boot-sample-atmosphere-1.4.0.RELEASE.jar', type: 'jar']], 
+		file: 'spring-boot-samples/spring-boot-sample-atmosphere/target/spring-boot-sample-atmosphere-1.4.0.RELEASE.jar', type: 'spring-boot-sample-atmosphere-1.4.0.RELEASE.jar']], 
 		credentialsId: 'nexus', groupId: 'org.springframework.boot', 
 		nexusUrl: '192.168.0.103:8081/nexus', 
 		nexusVersion: 'nexus2', protocol: 'http', 

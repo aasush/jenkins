@@ -16,23 +16,7 @@ agent any
         			}
             	}
         	} 
-        	/*stage('SonarQube analysis') { 
-        		steps {
-        			dir(project_path) {
-					withSonarQubeEnv('sonar') { 
-					sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.603:sonar ' + 
-						'-Dsonar.projectKey=com.atmosphere:all:master ' +
-						'-Dsonar.login=admin ' +
-						'-Dsonar.password=admin ' +
-						'-Dsonar.language=java ' +
-						'-Dsonar.sources=. ' +
-						'-Dsonar.tests=. ' +
-						'-Dsonar.test.inclusions=**/*Test/** ' +
-						'-Dsonar.exclusions=**/*Test/**'
-						}
-					}
-				}
-			}*/
+        	
     		stage('archival') {
     			steps{
     				dir(project_path) {
@@ -49,7 +33,7 @@ agent any
             }
       stage('artifact uploader') {
         steps {
-          nexusArtifactUploader artifacts: [[artifactId: 'spring-boot-samples', classifier: '', file: 'spring-boot-sample-atmosphere-1.4.0.RELEASE.jar', type: 'jar']], credentialsId: 'nexusid', groupId: 'org.springframework.boot', nexusUrl: '192.168.1.22:8081/nexus', nexusVersion: 'nexus2', protocol: 'http', repository: 'snapshots', version: '1.4.0.RELEASE'
+          nexusArtifactUploader artifacts: [[artifactId: 'spring-boot-samples', classifier: '', file: 'spring-boot-samples/spring-boot-sample-atmosphere/target/*.ar?', type: 'jar']], credentialsId: 'nexusid', groupId: 'org.springframework.boot', nexusUrl: '192.168.1.22:8081/nexus', nexusVersion: 'nexus2', protocol: 'http', repository: 'snapshots', version: '1.4.0.RELEASE'
         }
       }
         }
